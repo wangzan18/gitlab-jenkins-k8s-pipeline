@@ -1,20 +1,20 @@
 // 镜像仓库地址
-def registry = "docker.io"
+def registry = "registry.us-east-1.aliyuncs.com"
 // 用户
-def docker_user = "wangzan18"
+def namespace = "wzlinux"
 // 镜像仓库项目
 def project = "gitlab-pipeline"
 // 镜像名称
 def app_name = "citest"
 // 镜像完整名称
-def image_name = "${registry}/${docker_user}/${project}:${app_name}-${BUILD_NUMBER}"
+def image_name = "${registry}/${namespace}/${project}:${app_name}-${BUILD_NUMBER}"
 // git仓库地址
 def git_address = "http://gitlab.wzlinux.com/root/gitlab-pipeline.git"
 // fenzhi分支
 def branch = "*/master"
 
 // 认证
-def dockerhub_auth = "fcf11c53-7969-4654-a609-141f6908e348"
+def aliyunhub_auth = "2187b285-f62e-437a-b6cf-d4a22c668891"
 def gitlab_auth = "cca83969-0fe3-4aa8-9c37-172f19d7338f"
 
 podTemplate(
@@ -38,7 +38,7 @@ podTemplate(
         stage('构建镜像') {
             container('docker') {
                 stage('打包镜像') {
-                   withCredentials([usernamePassword(credentialsId: "${dockerhub_auth}", passwordVariable: 'password', usernameVariable: 'username')]) {
+                   withCredentials([usernamePassword(credentialsId: "${aliyunhub_auth}", passwordVariable: 'password', usernameVariable: 'username')]) {
                    sh """
                     docker build -t ${image_name} .
                     docker login -u ${username} -p '${password}'
