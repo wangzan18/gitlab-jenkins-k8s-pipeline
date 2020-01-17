@@ -1,6 +1,6 @@
 // 镜像仓库地址
 def registry = "registry.us-east-1.aliyuncs.com"
-// 用户
+// 命名空间
 def namespace = "wzlinux"
 // 镜像仓库项目
 def project = "gitlab-pipeline"
@@ -16,6 +16,14 @@ def branch = "*/master"
 // 认证
 def aliyunhub_auth = "2187b285-f62e-437a-b6cf-d4a22c668891"
 def gitlab_auth = "cca83969-0fe3-4aa8-9c37-172f19d7338f"
+
+// K8s认证
+def k8s_auth = "4fd99c44-2834-4aeb-9403-003ab579ad45"
+// aliyun仓库secret_name
+def aliyun_registry_secret = "aliyun-pull-secret"
+// k8s部署后暴露的nodePort
+def nodePort = "30666"
+
 
 podTemplate(
     label: 'jenkins-agent', 
@@ -47,6 +55,14 @@ podTemplate(
                     }
                 }  
             }    
+        }
+        stage('部署到K8s'){
+            sh """
+                sed -i 's#\$IMAGE_NAME#${image_name}#' deployment.yaml
+                sed -i 's#\$SECRET_NAME#${aliyun_registry_secret}#' deployment.yaml
+                sed -i 's#\$NODE_PORT#${nodePort}#' deployment.yaml
+            """
+            kubernetesDeploy configs: 'deployment.yaml', kubeconfigId: "${k8s_auth}"
         }
     }
 }
