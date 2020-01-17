@@ -41,7 +41,7 @@ podTemplate(
                    withCredentials([usernamePassword(credentialsId: "${aliyunhub_auth}", passwordVariable: 'password', usernameVariable: 'username')]) {
                    sh """
                     docker build -t ${image_name} .
-                    docker login -u ${username} -p '${password}'
+                    docker login -u ${username} -p '${password}' ${registry}
                     docker push ${image_name}
                     """
                     }
