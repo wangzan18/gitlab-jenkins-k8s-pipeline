@@ -36,7 +36,7 @@ podTemplate(
         stage('构建镜像') {
             container('docker') {
                 stage('打包镜像') {
-                   withCredentials([usernamePassword(credentialsId: "${harbor_auth}", passwordVariable: 'password', usernameVariable: 'username')]) {
+                   withCredentials([usernamePassword(credentialsId: "${dockerhub_auth}", passwordVariable: 'password', usernameVariable: 'username')]) {
                    sh """
                     docker build -t ${image_name} .
                     docker login -u ${username} -p '${password}'
