@@ -61,7 +61,7 @@ podTemplate(
                 sed -i 's#\$IMAGE_NAME#${image_name}#' deployment.yaml
                 sed -i 's#\$SECRET_NAME#${aliyun_registry_secret}#' deployment.yaml
                 sed -i 's#\$NODE_PORT#${nodePort}#' deployment.yaml
-            """
+               """
             kubernetesDeploy configs: 'deployment.yaml', kubeconfigId: "${k8s_auth}"
         }
     }
