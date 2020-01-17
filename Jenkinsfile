@@ -1,5 +1,5 @@
 // 镜像仓库地址
-def registry = "harbor.wzlinux.com"
+def registry = "wangzan18"
 // 镜像仓库项目
 def project = "gitlab-pipeline"
 // 镜像名称
@@ -12,7 +12,7 @@ def git_address = "http://gitlab.wzlinux.com/root/gitlab-pipeline.git"
 def branch = "*/master"
 
 // 认证
-def harbor_auth = "9f42dff1-11ab-4124-a847-fcc10f1d3af6"
+def dockerhub_auth = "fcf11c53-7969-4654-a609-141f6908e348"
 def gitlab_auth = "cca83969-0fe3-4aa8-9c37-172f19d7338f"
 
 podTemplate(
@@ -39,7 +39,7 @@ podTemplate(
                    withCredentials([usernamePassword(credentialsId: "${harbor_auth}", passwordVariable: 'password', usernameVariable: 'username')]) {
                    sh """
                     docker build -t ${image_name} .
-                    docker login -u ${username} -p '${password}' ${registry}
+                    docker login -u ${username} -p '${password}'
                     docker push ${image_name}
                     """
                     }
