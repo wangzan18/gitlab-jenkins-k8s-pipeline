@@ -48,10 +48,10 @@ podTemplate(
                 stage('打包镜像') {
                    withCredentials([usernamePassword(credentialsId: "${aliyunhub_auth}", passwordVariable: 'password', usernameVariable: 'username')]) {
                    sh """
-                    docker build -t ${image_name} .
-                    docker login -u ${username} -p '${password}' ${registry}
-                    docker push ${image_name}
-                    """
+                      docker build -t ${image_name} .
+                      docker login -u ${username} -p '${password}' ${registry}
+                      docker push ${image_name}
+                   """
                     }
                 }  
             }    
@@ -61,7 +61,7 @@ podTemplate(
                 sed -i 's#\$IMAGE_NAME#${image_name}#' deployment.yaml
                 sed -i 's#\$SECRET_NAME#${aliyun_registry_secret}#' deployment.yaml
                 sed -i 's#\$NODE_PORT#${nodePort}#' deployment.yaml
-               """
+            """
             kubernetesDeploy configs: 'deployment.yaml', kubeconfigId: "${k8s_auth}"
         }
     }
