@@ -64,5 +64,12 @@ podTemplate(
             """
             kubernetesDeploy configs: 'deployment.yaml', kubeconfigId: "${k8s_auth}"
         }
+        post {
+            failure {
+                 mail to: 'wangzan18@126.com',
+                     subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                     body: "Something is wrong with ${env.BUILD_URL}"
+            }
+        }
     }
 }
