@@ -24,8 +24,8 @@ spec:
       name: dockersock
   volumes:
   - name: dockersock
-    hostDir:
-      hostPath: "/var/run/docker.sock"
+    hostPath:
+      path: "/var/run/docker.sock"
   - emptyDir:
       medium: ""
     name: "workspace-volume"
