@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
   - name: jnlp
-    image: wangzan18/jenkins-agent:maven-3.6.3
+    image: wangzan18/jenkins-agent:3.40-1-alpine
     volumeMounts:
     - mountPath: "/home/jenkins/agent"
       name: "workspace-volume"
