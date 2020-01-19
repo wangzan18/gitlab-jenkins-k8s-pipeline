@@ -29,7 +29,7 @@ podTemplate(
     label: 'jenkins-agent', 
     cloud: 'kubernetes', 
     containers: [
-       containerTemplate(name: 'jnlp', image: "wangzan18/jenkins-agent:maven-3.6.3"),
+       containerTemplate(name: 'jnlp', image: "wangzan18/jenkins-agent:3.40-1-alpine"),
        containerTemplate(name: 'docker', image: 'docker:19.03.1-dind', ttyEnabled: true, command: 'cat')
     ],
     volumes: [
