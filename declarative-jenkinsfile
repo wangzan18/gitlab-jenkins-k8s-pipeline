@@ -59,4 +59,4 @@ pipeline {
         kubernetesDeploy configs: 'deployment.yaml', kubeconfigId: "${k8s_auth}"
     }
   }
-}
+}}
