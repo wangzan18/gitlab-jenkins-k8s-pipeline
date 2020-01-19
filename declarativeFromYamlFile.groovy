@@ -1,7 +1,6 @@
 pipeline {
   agent {
     kubernetes {
-      customWorkspace '/home/'
       yamlFile 'KubernetesPod.yaml'
     }
   }
