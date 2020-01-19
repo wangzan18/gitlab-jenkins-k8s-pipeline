@@ -54,6 +54,11 @@ pipeline {
     }
   }
   post {
+    success {
+        mail to: 'wangzan18@126.com',
+             subject: "Successed Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Everythins is right with ${env.BUILD_URL}"
+    }
     failure {
         mail to: 'wangzan18@126.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
