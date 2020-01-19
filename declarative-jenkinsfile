@@ -41,12 +41,12 @@ pipeline {
     }
     stage('代码编译') {
       steps {
-        ls
+        sh 'ls'
       }
     }
     stage('打包镜像') {
-       container('docker') {
-         steps {
+      steps {
+         container('docker') {
             withCredentials([usernamePassword(credentialsId: "${aliyunhub_auth}", passwordVariable: 'password', usernameVariable: 'username')]) {
              sh """
                 docker build -t ${image_name} .
@@ -54,7 +54,7 @@ pipeline {
                 docker push ${image_name}
              """
          }
-       }
+      }
     }
     stage('代码部署') {
       steps {
