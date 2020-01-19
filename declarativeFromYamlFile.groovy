@@ -53,4 +53,11 @@ pipeline {
       }
     }
   }
+  post {
+    failure {
+        mail to: 'wangzan18@126.com',
+             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Something is wrong with ${env.BUILD_URL}"
+    }
+  }
 }
