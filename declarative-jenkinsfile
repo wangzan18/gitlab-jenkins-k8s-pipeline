@@ -1,22 +1,7 @@
 pipeline {
   agent {
     kubernetes {
-      yaml """
-        apiVersion: v1
-        kind: Pod
-        metadata:
-          labels:
-            app: declarative-pipeline
-        spec:
-          containers:
-          - name: jnlp
-            image: wangzan18/jenkins-agent:maven-3.6.3
-          - name: docker
-            image: docker:19.03.1-dind
-            command:
-            - cat
-            tty: true
-      """
+      yamlFile 'KubernetesPod.yaml'
     }
   }
   environment {
