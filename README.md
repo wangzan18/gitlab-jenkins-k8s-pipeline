@@ -182,7 +182,7 @@ kubectl apply -f https://raw.githubusercontent.com/wangzan18/jenkins-cicd/master
 ![](https://s1.51cto.com/images/blog/202001/17/18c896bb148846856c5f66c64b1ffe1a.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 
 ## 4.3、为 job 添加 pipeline 脚本
-我们前面测试 gitlab 触发 jenkins 的时候已经创建了一个 job，我们使用 SCM 的方式，我已经把我测试的仓库同步到 github了，大家查看代码可以去我的 github 地址：https://github.com/wangzan18/gitlab-pipeline.git
+我们前面测试 gitlab 触发 jenkins 的时候已经创建了一个 job，我们使用 SCM 的方式，我已经把我测试的仓库同步到 github了，大家查看代码可以去我的 github 地址：https://github.com/wangzan18/gitlab-jenkins-k8s-pipeline.git
 
 ![](https://s1.51cto.com/images/blog/202001/17/d7b4bdcec6b348ed6a21a959f2a66340.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 
@@ -228,7 +228,7 @@ kubectl create secret docker-registry aliyun-pull-secret --docker-username=wangz
 ## 5.3、更新 pipeline 脚本。
 大家可以查看我 github 仓库 jenkins 的变化情况。
 
-已经创建我们要部署的 deployment.yaml 文件，都可以在 github 上面看到 https://github.com/wangzan18/gitlab-pipeline.git 。
+已经创建我们要部署的 deployment.yaml 文件，都可以在 github 上面看到 https://github.com/wangzan18/gitlab-jenkins-k8s-pipeline.git 。
 
 ## 5.4、代码提交触发更新
 我们可以看到 jenkins pipeline 都已经更新成功。
@@ -302,7 +302,7 @@ def app_name = "citest"
 // 镜像完整名称
 def image_name = "${registry}/${namespace}/${project}:${app_name}-${BUILD_NUMBER}"
 // git仓库地址
-def git_address = "http://gitlab.wzlinux.com/root/gitlab-pipeline.git"
+def git_address = "http://gitlab.wzlinux.com/root/gitlab-jenkins-k8s-pipeline.git"
 // fenzhi分支
 def branch = "*/master"
 
@@ -400,7 +400,7 @@ post {
 ![](https://s1.51cto.com/images/blog/202001/19/14e36353d8a999a19c803c039bbc61ff.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 
 
-参考文档：https://github.com/wangzan18/gitlab-pipeline.git
+参考文档：https://github.com/wangzan18/gitlab-jenkins-k8s-pipeline.git
 https://github.com/jenkinsci/kubernetes-plugin
 https://blog.51cto.com/wzlinux/2467307
 
